@@ -1,0 +1,71 @@
+{
+  "nombre": "Jack el Destripador",
+  "alias": ["El Asesino de Whitechapel", "Leather Apron"],
+  "victimas": [
+    {
+      "nombre": "Mary Ann Nichols",
+      "fecha": "31 de agosto de 1888",
+      "lugar": "Buck's Row, Whitechapel",
+      "edad": 43,
+      "ocupacion": "Prostituta"
+    },
+    {
+      "nombre": "Annie Chapman",
+      "fecha": "8 de septiembre de 1888",
+      "lugar": "29 Hanbury Street, Spitalfields",
+      "edad": 47,
+      "ocupacion": "Prostituta"
+    },
+    {
+      "nombre": "Elizabeth Stride",
+      "fecha": "30 de septiembre de 1888",
+      "lugar": "Dutfield's Yard, Berner Street, Whitechapel",
+      "edad": 44,
+      "ocupacion": "Prostituta"
+    },
+    {
+      "nombre": "Catherine Eddowes",
+      "fecha": "30 de septiembre de 1888",
+      "lugar": "Mitre Square, City of London",
+      "edad": 46,
+      "ocupacion": "Prostituta"
+    },
+    {
+      "nombre": "Mary Jane Kelly",
+      "fecha": "9 de noviembre de 1888",
+      "lugar": "13 Miller's Court, Dorset Street, Spitalfields",
+      "edad": 25,
+      "ocupacion": "Prostituta"
+    }
+  ],
+  "modus_operandi": "Jack el Destripador era conocido por atacar y matar a mujeres prostitutas en el East End de Londres en la década de 1880. Sus víctimas eran apuñaladas repetidamente y sufrieron mutilaciones.",
+  "investigacion": {
+    "fecha_inicio": "31 de agosto de 1888",
+    "fecha_fin": "2 de noviembre de 1888",
+    "investigadores": [
+      {
+        "nombre": "Frederick George Abberline",
+        "ocupacion": "Inspector de policía de la Metrópoli de Londres"
+      },
+      {
+        "nombre": "Melville Macnaghten",
+        "ocupacion": "Oficial de policía y escritor"
+      },
+      {
+        "nombre": "Robert Anderson",
+        "ocupacion": "Comisionado de la policía metropolitana de Londres"
+      }
+    ],
+    "teorias": [
+      {
+        "descripcion": "Jack el Destripador era un médico o cirujano debido a la precisión de las mutilaciones",
+        "fuente": "En el informe de la investigación policial, el Inspector Abberline sugirió que Jack el Destripador tenía conocimientos médicos debido a la forma en que se realizaron las mutilaciones en las víctimas."
+      },
+      {
+        "descripcion": "Jack el Destripador era un miembro de la realeza",
+        "fuente": "Algunos teóricos sugieren que Jack el Destripador era un miembro de la realeza debido a la cantidad de tiempo y recursos que se gastaron en la investigación y la supuesta falta de avances significativos en el caso."
+      }
+    ]
+  }
+}
+
