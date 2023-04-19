@@ -1,0 +1,68 @@
+{
+    "equipos": [
+      {
+        "nombre": "Inglaterra",
+        "estadio": "Twickenham Stadium",
+        "entrenador": "Eddie Jones",
+        "camiseta": "Blanca",
+        "himno": "God Save the Queen",
+        "capitan": {
+          "nombre": "Owen Farrell",
+          "fecha_nacimiento": "24/09/1991"
+        },
+        "victorias_mas_abultadas": [
+          {
+            "rival": "Escocia",
+            "resultado": "80-0"
+          },
+          {
+            "rival": "Gales",
+            "resultado": "62-5"
+          }
+        ]
+      },
+      {
+        "nombre": "Escocia",
+        "estadio": "Murrayfield Stadium",
+        "entrenador": "Gregor Townsend",
+        "camiseta": "Azul marino",
+        "himno": "Flower of Scotland",
+        "capitan": {
+          "nombre": "Stuart Hogg",
+          "fecha_nacimiento": "24/06/1992"
+        },
+        "victorias_mas_abultadas": [
+          {
+            "rival": "Inglaterra",
+            "resultado": "33-6"
+          },
+          {
+            "rival": "Gales",
+            "resultado": "51-3"
+          }
+        ]
+      },
+      {
+        "nombre": "Gales",
+        "estadio": "Principality Stadium",
+        "entrenador": "Wayne Pivac",
+        "camiseta": "Roja",
+        "himno": "Hen Wlad Fy Nhadau",
+        "capitan": {
+          "nombre": "Alun Wyn Jones",
+          "fecha_nacimiento": "19/09/1985"
+        },
+        "victorias_mas_abultadas": [
+          {
+            "rival": "Inglaterra",
+            "resultado": "30-3"
+          },
+          {
+            "rival": "Escocia",
+            "resultado": "68-10"
+          }
+        ]
+      }
+    ]
+  }
+  
