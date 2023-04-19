@@ -1,0 +1,41 @@
+
+
+[  {    "partido": {      "equipo_local": "Inglaterra",      "equipo_visitante": "Nueva Zelanda",      "fecha": "14/11/2020",      "hora": "16:30",      "estadio": "Twickenham Stadium",      "ciudad": "Londres"    },    "resultado": {      "puntos_local": 15,      "puntos_visitante": 23,      "ganador": "Nueva Zelanda",      "mejor_jugador": "Richie Mo'unga"    },    "eventos": [      {        "tipo": "Try",        "jugador": "Sam Cane",        "equipo": "Nueva Zelanda",        "minuto": 35      },      {        "tipo": "Try",        "jugador": "Kyle Sinckler",        "equipo": "Inglaterra",        "minuto": 50      },      {        "tipo": "Penal",        "jugador": "Beauden Barrett",        "equipo": "Nueva Zelanda",        "minuto": 80      }    ]
+  },
+  {
+    "partido": {
+      "equipo_local": "Gales",
+      "equipo_visitante": "Nueva Zelanda",
+      "fecha": "28/11/2020",
+      "hora": "14:30",
+      "estadio": "Principality Stadium",
+      "ciudad": "Cardiff"
+    },
+    "resultado": {
+      "puntos_local": 13,
+      "puntos_visitante": 25,
+      "ganador": "Nueva Zelanda",
+      "mejor_jugador": "Aaron Smith"
+    },
+    "eventos": [
+      {
+        "tipo": "Try",
+        "jugador": "George Bridge",
+        "equipo": "Nueva Zelanda",
+        "minuto": 20
+      },
+      {
+        "tipo": "Try",
+        "jugador": "Leigh Halfpenny",
+        "equipo": "Gales",
+        "minuto": 45
+      },
+      {
+        "tipo": "Penal",
+        "jugador": "Beauden Barrett",
+        "equipo": "Nueva Zelanda",
+        "minuto": 60
+      }
+    ]
+  }
+]
