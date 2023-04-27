@@ -8,7 +8,7 @@ insertone:
 #añadimos a la seleccion Francesa
 
 db.equipos.insertOne({
-    "nombre": "Francia",
+    "nombre": "Japon",
     "estadio": "Stade de France",
     "entrenador": "Fabien Galthié",
     "camiseta": "Azul",
@@ -151,6 +151,8 @@ db.equipos.insertMany([  {    "nombre": "Argentina",    "estadio": "Estadio Mari
 #Elimina varios documentos utilizando los dos métodos de eliminación de MongoDB
 
 db.equipos.deleteOne({ "nombre": "Japón" })
+db.equipos.deleteOne({ "nombre": "Argentina" })
+
 
 db.equipos.deleteMany({ "nombre": { "$in": ["Nueva Zelanda", "Australia"] }})
 
@@ -159,19 +161,207 @@ db.equipos.deleteMany({ "nombre": { "$in": ["Nueva Zelanda", "Australia"] }})
 
 #Actualiza varios documentos utilizando los tres métodos de eliminación de MongoDB
 
-#Consultas:
+Actualizamos que el nombre del seleccionador de gales ha cambiado
+db.equipos.updateOne(
+   { "equipos.nombre": "Gales" },
+   { $set: { "equipos.$.entrenador": "Warren Gatland" } }
+)
 
-#Al menos incluye 5 consultas de datos simples
+Actualizamos para que todos los equipos jueguen ahora en el estadio olimpico de Londres
+db.equipos.updateMany({}, { $set: { "estadio": "Estadio Olímpico de Londres" } })
+
+
+
+Hacemos una actualizacion para ello volvemos a crear a Japon y hacemos que se actualice con los datos de nueva zelanda 
+
+db.equipos.updateOne(
+  { nombre: "Japon" },
+  {
+    $set: {
+      nombre: "All Blacks",
+      estadio: "Estadio Eden Park",
+      entrenador: "Ian Foster",
+      camiseta: "Negra",
+      himno: "God Defend New Zealand",
+      capitan: {
+        nombre: "Samuel Whitelock",
+        fecha_nacimiento: "12/10/1988"
+      },
+      partidos: [
+        {
+          rival: "Australia",
+          resultado: "Ganó 47-26"
+        },
+        {
+          rival: "Argentina",
+          resultado: "Ganó 36-13"
+        },
+        {
+          rival: "Sudáfrica",
+          resultado: "Ganó 23-13"
+        }
+      ]
+    }
+  }
+)
+
+db.equipos.updateOne(
+  { nombre: "All Blacks" },
+  {
+    $set: {
+      partidos: [
+        {
+          rival: "Gales",
+          resultado: "Ganó 46-6"
+        },
+        {
+          rival: "Inglaterra",
+          resultado: "Ganó 60-13"
+        },
+        {
+          rival: "Escocia",
+          resultado: "Ganó 69-20"
+        }
+      ]
+    }
+  }
+)
+
+Consultas:
+
+    Al menos incluye 5 consultas de datos simples
+
+1.Mostrar los nombres de los capitanes de cada equipo:
+
+db.equipos.find({}, { "capitan.nombre": 1, _id: 0 })
+
+2.Mostrar el nombre del estadio de Francia
+
+db.equipos.find({ nombre: "Francia" }, { estadio: 1, _id: 0 })
+
+3. Mostrar los equipos que han anotado mas de 50 puntos en victorias_mas_abultadas
+
+db.equipos.find({ "victorias_mas_abultadas.resultado": { $gte: "50" } }, { nombre: 1, _id: 0 })
+
+4. Equipos que tienen la camiseta azuk 
+
+db.equipos.find({"camiseta": "Azul"}, {"nombre": 1})
+
+5. Nombre del himno de Italia 
+
+db.equipos.find({"nombre": "Italia"}, {"himno": 1})
+
+6 Nombre del capitan de Inglaterra 
+
+db.equipos.find({"nombre": "Inglaterra"}, {"capitan.nombre": 1})
+
+
+
+
+
+
+
+
+
+
 
 #Al menos 3 consultas con arrays
 
+Encontrar los equipos que han obtenido una victoria con margen de 50 puntos o superior:
+
+db.equipos.find({ "victorias_mas_abultadas.resultado": { $regex: /^[5-9][0-9]-[0-9]+$/ } }).forEach(function(equipo) {
+    equipo.victorias_mas_abultadas.forEach(function(victoria) {
+        var resultado = victoria.resultado.split("-");
+        var dif = Math.abs(resultado[0] - resultado[1]);
+        if (dif >= 50) {
+            print(equipo.nombre, victoria.rival, victoria.resultado);
+        }
+    });
+});
+
+
+ Mostrar los equipos, con el nombre de su estadio y de su himno ordenado alfabeticamente de forma descendente
+
+db.equipos.find({}, {nombre: 1, estadio: 1, himno: 1, _id: 0}).sort({nombre: -1})
+
+
+
+Mostrar el equipo, el nombre de su capitan y su fecha de nacimiento
+db.equipos.find({}, {nombre: 1, "capitan.nombre": 1, "capitan.fecha_nacimiento": 1, _id: 0})
+
+
+
+
+
+
+
+
+
+
+
+
 #Al menos 3 consultas con documentos embebidos
+
+1 Devolver solo el nombre y el estadio del equipo con nombre "Gales":
+
+db.equipos.find(
+{nombre: "Gales"},
+{nombre: 1, estadio: 1, _id: 0}
+)
+
+2 Devolver todos los equipos con sus nombres y el nombre y fecha de nacimiento de su capitán, 
+ordenados por el nombre del capitán en orden ascendente:
+
+db.equipos.find(
+   {},
+   {nombre: 1, "capitan.nombre": 1, "capitan.fecha_nacimiento": 1, _id: 0}
+).sort({"capitan.nombre": 1})
+
+3 Devolver  el nombre y la camiseta del equipo con el estadio "Stadio Olimpico":
+
+db.equipos.find(
+   {estadio: "Stadio Olimpico"},
+   {nombre: 1, camiseta: 1, _id: 0}
+)
+
+4 Encuentra los equipos que han ganado al menos una vez por más de 30 puntos. Devuelve el nombre del 
+equipo, el nombre del estadio donde juega y la victoria más abultada obtenida por el equipo.
+
+.db.equipos.find(
+   { "victorias_mas_abultadas.resultado": { $gt: "30-0" } },
+   { _id: 0, nombre: 1, estadio: 1, "victorias_mas_abultadas": { $elemMatch: { resultado: { $gt: "30-0" } } } }
+)
+
+
+
+
 
 #Al menos 1 consulta de agrupación
 
+información detallada sobre cada uno de los equipos y sus victorias más abultadas.
 
-NOTA: Debes utilizar en las consultas proyecciones, operadores, ordenación y los modificadores sort y limit. 
-Se valorará la complejidad de las mismas
+db.equipos.aggregate([
+  {
+    $project: {
+      _id: 0,
+      nombre: 1,
+      estadio: 1,
+      entrenador: 1,
+      camiseta: 1,
+      himno: 1,
+      capitan: 1,
+      victorias_mas_abultadas: {
+        $filter: {
+          input: "$victorias_mas_abultadas",
+          as: "victoria",
+          cond: { $regexMatch: { input: "$$victoria.resultado", regex: /^(\d{2}|\d)-(\d{2}|\d)$/ } }
+        }
+      }
+    }
+  }
+])
+
+
 
 
 
